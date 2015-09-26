@@ -60,6 +60,18 @@ namespace Collections
             {
                 try
                 {
+                    // simple numbers
+                    int[] arrToCheck = new int[] { 1, 2, 3, 5, 7, 11, 13, 17, 19 };
+                    int index = 0;
+                    foreach (var number in collection.GetSimpleNumbersInstance(20))
+                    {
+                        if (index > arrToCheck.Length - 1)
+                        {
+                            Assert(false, "Too many simple numbers generated!");
+                        }
+                        Assert(number == arrToCheck[index], "Wrong simple number " + number + " must be " + arrToCheck[index]);
+                    }
+
                     // Potatoes
                     List<IPotatoe> myPotatoes = new List<IPotatoe>();
                     myPotatoes.Add(new Potatoe(false));
@@ -129,21 +141,83 @@ namespace Collections
 
                     // linked list
                     {
-                        LinkedList<int> result = collection.CreateOrderedList(new List<int>(new int[] { 1, -9, 6, 124, -7, 34, 1,2, 0, 99, -56 }));
-                        if (Assert(result.Count == 11, "длина списка неверная"))
+                        LinkedList<int> result = collection.CreateOrderedList(new List<int>(new int[] { 1, -9, 6, 124, -7, 34, 1, 2, 0, 99, -56 }));
+                        if(Assert(result != null, "нет результата!"))
                         {
-                            Assert(result.First.Value == -56, "-56 on wrong place");
-                            Assert(result.First.Next.Value == -9, "-9 on wrong place");
-                            Assert(result.First.Next.Next.Value == -7, "-7 on wrong place");
-                            Assert(result.First.Next.Next.Next.Value == 0, "0 on wrong place");
-                            Assert(result.First.Next.Next.Next.Next.Value == 1, "1 on wrong place");
-                            Assert(result.First.Next.Next.Next.Next.Next.Value == 1, "1 on wrong place");
-                            Assert(result.First.Next.Next.Next.Next.Next.Next.Value == 2, "2 on wrong place");
-                            Assert(result.First.Next.Next.Next.Next.Next.Next.Next.Value == 6, "6 on wrong place");
-                            Assert(result.First.Next.Next.Next.Next.Next.Next.Next.Next.Value == 34, "34 on wrong place");
-                            Assert(result.First.Next.Next.Next.Next.Next.Next.Next.Next.Next.Value == 99, "99 on wrong place");
-                            Assert(result.First.Next.Next.Next.Next.Next.Next.Next.Next.Next.Next.Value == 124, "124 on wrong place");
-                            Assert(result.First.Next.Next.Next.Next.Next.Next.Next.Next.Next.Next.Next == null, "wrong end of list");
+                            if (Assert(result.Count == 11, "длина списка неверная"))
+                            {
+                                Assert(result.First.Value == -56, "-56 on wrong place");
+                                Assert(result.First.Next.Value == -9, "-9 on wrong place");
+                                Assert(result.First.Next.Next.Value == -7, "-7 on wrong place");
+                                Assert(result.First.Next.Next.Next.Value == 0, "0 on wrong place");
+                                Assert(result.First.Next.Next.Next.Next.Value == 1, "1 on wrong place");
+                                Assert(result.First.Next.Next.Next.Next.Next.Value == 1, "1 on wrong place");
+                                Assert(result.First.Next.Next.Next.Next.Next.Next.Value == 2, "2 on wrong place");
+                                Assert(result.First.Next.Next.Next.Next.Next.Next.Next.Value == 6, "6 on wrong place");
+                                Assert(result.First.Next.Next.Next.Next.Next.Next.Next.Next.Value == 34, "34 on wrong place");
+                                Assert(result.First.Next.Next.Next.Next.Next.Next.Next.Next.Next.Value == 99, "99 on wrong place");
+                                Assert(result.First.Next.Next.Next.Next.Next.Next.Next.Next.Next.Next.Value == 124, "124 on wrong place");
+                                Assert(result.First.Next.Next.Next.Next.Next.Next.Next.Next.Next.Next.Next == null, "wrong end of list");
+                            }
+                        }
+                    }
+
+                    // dictionary
+                    {
+                        List<string> myText = new List<string>();
+                        myText.AddRange(new string[]{ "12345", "af", "333", "f", "aff", "aa", "aa" });
+                        IReadOnlyDictionary<char, IList<string>> result = collection.OrganizeByFirstCharacter(myText);
+                        if (Assert(result != null, "нет результата!"))
+                        {
+                            Assert(result.Count == 4, "размер словарика неверный");
+                            int goodValues = 0;
+                            foreach (var item in result)
+                            {
+                                if (Assert(item.Value != null, "нет списка по ключу " + item.Key))
+                                {
+                                    if (Assert(item.Value.Count > 0, "пустой список по ключу " + item.Key))
+                                    {
+                                        goodValues++;
+                                    }
+                                }
+                            }
+                            if (goodValues == result.Count)
+                            {
+                                HashSet<char> modelKeys = new HashSet<char>();
+                                modelKeys.Add('1');
+                                modelKeys.Add('a');
+                                modelKeys.Add('3');
+                                modelKeys.Add('f');
+                                foreach (var key in modelKeys)
+                                {
+                                    if (Assert(result.ContainsKey(key), "Результат не содержит ключ " + key))
+                                    { 
+                                        IList<string> list = result[key];
+                                        if (list != null)
+                                        {
+                                            switch (key)
+                                            { 
+                                                case 'a':
+                                                    Assert(list.Count == 4, "Длина списка по ключу " + key + " неверная");
+                                                    break;
+                                                case '1':
+                                                    Assert(list.Count == 1, "Длина списка по ключу " + key + " неверная");
+                                                    break;
+                                                case '3':
+                                                    Assert(list.Count == 1, "Длина списка по ключу " + key + " неверная");
+                                                    break;
+                                                case 'f':
+                                                    Assert(list.Count == 1, "Длина списка по ключу " + key + " неверная");
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                }
+                                foreach(var key in result.Keys)
+                                {
+                                    Assert(modelKeys.Contains(key), "Лишний ключ " + key + " в результате");
+                                }
+                            }
                         }
                     }
 

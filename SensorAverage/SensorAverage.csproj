@@ -48,6 +48,7 @@
     <Compile Include="Konstantin\SensorAverage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Valeriya\ParseDataFromSensors.cs" />
     <Compile Include="Valeriya\SensorAverage.cs" />
     <Compile Include="Vladimir\SensorAverage.cs" />
   </ItemGroup>

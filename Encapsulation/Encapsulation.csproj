@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0B86DA56-DD67-4418-A8A4-9A6E058EC444}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Encapsulation</RootNamespace>
+    <AssemblyName>Encapsulation</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Alina\ComplexNumbers.cs" />
+    <Compile Include="Alina\EncapsulationExercises.cs" />
+    <Compile Include="Alina\PriorityQueue.cs" />
+    <Compile Include="Alina\Matrix.cs" />
+    <Compile Include="Alina\Money.cs" />
+    <Compile Include="Alina\GeneralizedMatrix.cs" />
+    <Compile Include="Alina\MyCollection.cs" />
+    <Compile Include="Alina\MyDictionary.cs" />
+    <Compile Include="Alina\Student.cs" />
+    <Compile Include="Andrey\EncapsulationExercises.cs" />
+    <Compile Include="Elena\ComplexNumber.cs" />
+    <Compile Include="Elena\EncapsulationExercises.cs" />
+    <Compile Include="Elena\Money.cs" />
+    <Compile Include="Elena\MyCollection.cs" />
+    <Compile Include="Elena\MyDictionary.cs" />
+    <Compile Include="Elena\Number.cs" />
+    <Compile Include="Elena\PriorityQueue.cs" />
+    <Compile Include="IEncapsulationExercises.cs" />
+    <Compile Include="IPriorityQueue.cs" />
+    <Compile Include="Konstantin\ComplexNumber.cs" />
+    <Compile Include="Konstantin\EncapsulationExercises.cs" />
+    <Compile Include="Konstantin\Queue.cs" />
+    <Compile Include="Konstantin\Money.cs" />
+    <Compile Include="Konstantin\MyDictionary.cs" />
+    <Compile Include="MatrixExample\MatrixExample.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Valeriya\Double.cs" />
+    <Compile Include="Valeriya\EncapsulationExercises.cs" />
+    <Compile Include="Vladimir\Complex.cs" />
+    <Compile Include="Valeriya\Int.cs" />
+    <Compile Include="Valeriya\Matrix.cs" />
+    <Compile Include="Valeriya\Money.cs" />
+    <Compile Include="Valeriya\Number.cs" />
+    <Compile Include="Valeriya\EmptyQueueException.cs" />
+    <Compile Include="Valeriya\MyCollection.cs" />
+    <Compile Include="Valeriya\MyDictionary.cs" />
+    <Compile Include="Valeriya\PriorityQueue.cs" />
+    <Compile Include="Valeriya\Student.cs" />
+    <Compile Include="Vladimir\EncapsulationExercises.cs" />
+    <Compile Include="Vladimir\Money.cs" />
+    <Compile Include="Vladimir\MyCollection.cs" />
+    <Compile Include="Vladimir\MyDictionary.cs" />
+    <Compile Include="Vladimir\Number.cs" />
+    <Compile Include="Vladimir\PriorityQueue.cs" />
+    <Compile Include="Vladimir\Student.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

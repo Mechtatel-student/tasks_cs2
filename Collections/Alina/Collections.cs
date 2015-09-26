@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Collections.Alina
 {
-    class Collections: ICollections
+    class Collections : ICollections
     {
         public int SortPotatoes(List<IPotatoe> potatoeBag, out List<IPotatoe> goodPotatoes, out List<IPotatoe> badPotatoes)
         {
@@ -29,30 +29,122 @@ namespace Collections.Alina
             return good.Count;
         }
 
+        //private class SensorData
+        //{
+        //    int codeSensor;
+        //    public int CodeSensor { get { return codeSensor; } }
+        //    int sumValue;
+        //    int counter;
+        //    public void AddValue(int sensorValue)
+        //    {
+        //        sumValue += sensorValue;
+        //        counter++;
+        //    }
+        //    public double GetAvwrage()
+        //    {
+        //        return (double)sumValue / counter;
+        //    }
+        //    public SensorData(int codeSensor, int sumValue)
+        //    {
+        //        this.codeSensor = codeSensor;
+        //        this.sumValue = sumValue;
+        //        counter = 1;
+        //    }
+        //}
+        private class OutData : IOutData
+        {
+            private int code;
+            private double average;
+            public int Code
+            {
+                get { return code; }
+            }
 
+            public double Average
+            {
+                get { return average; }
+            }
+            public OutData(int code, double average)
+            {
+                this.code = code;
+                this.average = average;
+            }
+        }
         public List<IOutData> ProcessData(IReadOnlyList<IInData> inputData)
         {
-            //List<IOutData> output = new List<IOutData>();
+            Dictionary<int, List<int>> sensors = new Dictionary<int, List<int>>();
+            
+            foreach (var element in inputData)
+            {
+                if (element.IsValid)
+                {
+                    bool isContain = sensors.ContainsKey(element.Code);
+                    if (!isContain)
+                    {
+                        sensors.Add(element.Code, new List<int>());                        
+                    }
+                    sensors[element.Code].Add(element.Value);
+                }
+            }
+            List<IOutData> result = new List<IOutData>();
+            foreach (var item in sensors)
+            {
+                result.Add(new OutData(item.Key, (double)item.Value.Sum()/item.Value.Count));
+            }
 
-            //Dictionary<int, int> sensors = new Dictionary<int, int>();
+            return result;
 
-            //foreach (var input in inputData)
+            //List<SensorData> dataCollection = new List<SensorData>();
+            //foreach (var sensor in inputData)
             //{
-            //    if (input.IsValid)
+            //    if (sensor.IsValid)
             //    {
-            //        sensors.Add(input.Code, input.Value);
-
+            //        SensorData curentElement = dataCollection.Find(x => x.CodeSensor == sensor.Code);
+            //        if (curentElement == null)
+            //        {
+            //            dataCollection.Add(new SensorData(sensor.Code, sensor.Value));
+            //        }
+            //        else
+            //        {
+            //            curentElement.AddValue(sensor.Value);
+            //        }
             //    }
             //}
-
-            return null;
+            //List<IOutData> result = new List<IOutData>();
+            //foreach (var item in dataCollection)
+            //{
+            //    result.Add(new OutData(item.CodeSensor, item.GetAvwrage()));
+            //}
+            //return result;
         }
 
         public LinkedList<int> CreateOrderedList(IReadOnlyList<int> input)
         {
             List<int> output = new List<int>(input);
             output.Sort();
-            return new LinkedList<int>(output);      
+            return new LinkedList<int>(output);
+        }
+
+
+        public IReadOnlyDictionary<char, IList<string>> OrganizeByFirstCharacter(IEnumerable<string> text)
+        {
+            Dictionary <char, IList<string>> stringDictionary = new Dictionary<char, IList<string>>();
+
+            foreach (var item in text)
+            {
+                if (!stringDictionary.ContainsKey(item[0]))
+                {
+                    stringDictionary.Add(item[0], new List<string>());
+                }
+                stringDictionary[item[0]].Add(item);
+            }
+            return stringDictionary;
+        }
+
+
+        public ISimpleNumbers GetSimpleNumbersInstance(int limit)
+        {
+            throw new NotImplementedException();
         }
     }
 }

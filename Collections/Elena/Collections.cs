@@ -8,10 +8,25 @@ namespace Collections.Elena
 {
     class Collections:ICollections
     {
-        public class OutData
+        public class OutData:IOutData
         {
-           public int Code;
-           public double Average;
+           public int code;
+           public double average;
+
+           public int Code
+           {
+               get { return code; }
+           }
+
+           public double Average
+           {
+               get { return average; }
+           }
+           public OutData(int code, double average)
+           {
+               this.code = code;
+               this.average = average;
+           }
         }
 
         public class ResultRegistr 
@@ -83,13 +98,12 @@ namespace Collections.Elena
             for (int i = 0; i < resultData.Count; i++)
             {
 
-                listRezult.Add(new OutData {Code= resultData[i].code,Average= resultData[i].value / resultData[i].countOfData });
+                listRezult.Add(new OutData ( resultData[i].code, resultData[i].value / resultData[i].countOfData ));
                
             }
 
            //В этой строке невозможно преобразовать список
-           List<IOutData> result = (from IOutData c in listRezult
-                              select (IOutData)c).ToList();
+           List<IOutData> result = listRezult.ConvertAll( new Converter<OutData,IOutData>(MyConverter));
           
             return result;
         }
@@ -111,6 +125,37 @@ namespace Collections.Elena
             }
             
             return outputList;
+        }
+        
+
+        public IReadOnlyDictionary<char, IList<string>> OrganizeByFirstCharacter(IEnumerable<string> text)
+        {
+           
+            Dictionary <char, IList<string>> returnValue= new Dictionary<char, IList<string>>();
+
+            char firstChar;
+            foreach(string element in text)
+            {
+                firstChar = Convert.ToChar(element.Substring(0, 1));
+                if (!returnValue.ContainsKey(firstChar))
+                {
+                    returnValue.Add(firstChar, new List<string>());
+                }
+
+                returnValue[firstChar].Add(element);  
+               
+            }
+            return returnValue;
+
+        }
+
+        public static IOutData MyConverter(OutData element)
+        {return   (IOutData)element;}
+
+
+        public ISimpleNumbers GetSimpleNumbersInstance(int limit)
+        {
+            throw new NotImplementedException();
         }
     }
 }

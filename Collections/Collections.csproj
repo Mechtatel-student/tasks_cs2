@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -48,18 +48,19 @@
     <Compile Include="IInData.cs" />
     <Compile Include="IOutData.cs" />
     <Compile Include="IPotatoe.cs" />
+    <Compile Include="ISimpleNumbers.cs" />
     <Compile Include="Konstantin\Collections.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Valeriya\OutData.cs" />
+    <Compile Include="Vladimir\Collections.cs" />
+    <Compile Include="Vladimir\InData.cs" />
+    <Compile Include="Valeriya\Collections.cs" />
+    <Compile Include="Vladimir\OutData.cs" />
+    <Compile Include="Vladimir\Potatoe.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Andrey\" />
-    <Folder Include="Alina\" />
-    <Folder Include="Valeriya\" />
-    <Folder Include="Vladimir\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

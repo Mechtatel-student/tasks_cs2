@@ -24,5 +24,17 @@ namespace Collections.Andrey
         {
             throw new NotImplementedException();
         }
+
+
+        public IReadOnlyDictionary<char, IList<string>> OrganizeByFirstCharacter(IEnumerable<string> text)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public ISimpleNumbers GetSimpleNumbersInstance(int limit)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

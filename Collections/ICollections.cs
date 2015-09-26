@@ -39,5 +39,20 @@ namespace Collections
         /// <param name="input">список из чисел</param>
         /// <returns>созданный linked list</returns>
         LinkedList<int> CreateOrderedList(IReadOnlyList<int> input);
+
+        /// <summary>
+        /// пример: передали текст из строк
+        /// abcd
+        /// 45da
+        /// naa
+        /// nasdfas
+        /// в итоговом словаре должно очутиться 3 записи, с ключами a, 4 и n. по первому и второму ключу в списке будет
+        /// всего по одному элементу, а по третьему ключу - два элемента.
+        /// </summary>
+        /// <param name="words">набор строк</param>
+        /// <returns>"карта" символов и списков строк из text, которые начинаются с этого символа</returns>
+        IReadOnlyDictionary<char, IList<string>> OrganizeByFirstCharacter(IEnumerable<string> text);
+
+        ISimpleNumbers GetSimpleNumbersInstance(int limit);
     }
 }

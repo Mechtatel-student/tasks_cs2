@@ -91,5 +91,26 @@ namespace Collections.Konstantin
             }
             return orderedList;
         }
+
+
+        public IReadOnlyDictionary<char, IList<string>> OrganizeByFirstCharacter(IEnumerable<string> text)
+        {
+            Dictionary<char, IList<string>> organizeByFirstCharacter = new Dictionary<char, IList<string>>();
+            foreach (string item in text)
+            {
+                if (!organizeByFirstCharacter.ContainsKey(item[0]))
+	            {   
+		            organizeByFirstCharacter.Add(item[0], new List<string>());                    
+	            }
+                    organizeByFirstCharacter[item[0]].Add(item);               
+            }
+            return organizeByFirstCharacter;
+        }
+
+
+        public ISimpleNumbers GetSimpleNumbersInstance(int limit)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
